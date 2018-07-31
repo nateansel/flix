@@ -12,6 +12,8 @@
 		D87D1BB6210FFAA000CA6F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D87D1BB4210FFAA000CA6F2D /* Main.storyboard */; };
 		D87D1BB8210FFAA000CA6F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D87D1BB7210FFAA000CA6F2D /* Assets.xcassets */; };
 		D87D1BBB210FFAA000CA6F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D87D1BB9210FFAA000CA6F2D /* LaunchScreen.storyboard */; };
+		D87D1BC4210FFDCC00CA6F2D /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87D1BC3210FFDCC00CA6F2D /* MovieManager.swift */; };
+		D87D1BC6210FFDD600CA6F2D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87D1BC5210FFDD600CA6F2D /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		D87D1BB7210FFAA000CA6F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D87D1BBA210FFAA000CA6F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D87D1BBC210FFAA000CA6F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D87D1BC3210FFDCC00CA6F2D /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
+		D87D1BC5210FFDD600CA6F2D /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +61,21 @@
 				D87D1BB0210FFAA000CA6F2D /* AppDelegate.swift */,
 				D87D1BB2210FFAA000CA6F2D /* ViewController.swift */,
 				D87D1BB4210FFAA000CA6F2D /* Main.storyboard */,
+				D87D1BC3210FFDCC00CA6F2D /* MovieManager.swift */,
+				D87D1BC5210FFDD600CA6F2D /* Movie.swift */,
+				D87D1BC2210FFDB600CA6F2D /* Extras */,
+			);
+			path = Flix;
+			sourceTree = "<group>";
+		};
+		D87D1BC2210FFDB600CA6F2D /* Extras */ = {
+			isa = PBXGroup;
+			children = (
 				D87D1BB7210FFAA000CA6F2D /* Assets.xcassets */,
 				D87D1BB9210FFAA000CA6F2D /* LaunchScreen.storyboard */,
 				D87D1BBC210FFAA000CA6F2D /* Info.plist */,
 			);
-			path = Flix;
+			path = Extras;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +151,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D87D1BB3210FFAA000CA6F2D /* ViewController.swift in Sources */,
+				D87D1BC4210FFDCC00CA6F2D /* MovieManager.swift in Sources */,
+				D87D1BC6210FFDD600CA6F2D /* Movie.swift in Sources */,
 				D87D1BB1210FFAA000CA6F2D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +292,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37E2RLU4H9;
-				INFOPLIST_FILE = flix/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Flix/Extras/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NathanAnsel.flix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -291,7 +307,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37E2RLU4H9;
-				INFOPLIST_FILE = flix/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Flix/Extras/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NathanAnsel.flix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
