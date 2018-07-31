@@ -38,7 +38,7 @@
 		D87D1BA4210FFAA000CA6F2D = {
 			isa = PBXGroup;
 			children = (
-				D87D1BAF210FFAA000CA6F2D /* flix */,
+				D87D1BAF210FFAA000CA6F2D /* Flix */,
 				D87D1BAE210FFAA000CA6F2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,7 +51,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D87D1BAF210FFAA000CA6F2D /* flix */ = {
+		D87D1BAF210FFAA000CA6F2D /* Flix */ = {
 			isa = PBXGroup;
 			children = (
 				D87D1BB0210FFAA000CA6F2D /* AppDelegate.swift */,
@@ -61,7 +61,7 @@
 				D87D1BB9210FFAA000CA6F2D /* LaunchScreen.storyboard */,
 				D87D1BBC210FFAA000CA6F2D /* Info.plist */,
 			);
-			path = flix;
+			path = Flix;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
