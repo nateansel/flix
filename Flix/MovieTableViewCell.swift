@@ -52,7 +52,8 @@ class MovieTableViewCell: UITableViewCell {
 			posterImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
 			posterImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
 			posterImageView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
-			
+			posterImageView.widthAnchor.constraint(equalTo: posterImageView.heightAnchor, multiplier: (2.0 / 3.0)),
+			posterImageView.heightAnchor.constraint(equalToConstant: 120),
 			
 			// Title
 			titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
@@ -60,7 +61,7 @@ class MovieTableViewCell: UITableViewCell {
 			titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 			
 			// Overview
-			overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+			overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
 			overviewLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
 			overviewLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
 			overviewLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)

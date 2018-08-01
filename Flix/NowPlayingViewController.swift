@@ -18,15 +18,22 @@ class NowPlayingViewController: UIViewController {
 	var delegate: NowPlayingViewControllerDelegate?
 	
 	var movieView: MovieListView { return view as! MovieListView }
+	var searchController = UISearchController(searchResultsController: nil)
+	
+	private var fullMovies: [Movie] = []
 	
 	override func loadView() {
 		view = MovieListView()
 		movieView.delegate = self
+		searchController.dimsBackgroundDuringPresentation = false
+		searchController.searchResultsUpdater = self
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Now Playing"
+		
+		navigationItem.searchController = searchController
 	}
 }
 
@@ -35,6 +42,7 @@ extension NowPlayingViewController: MovieListViewDelegate {
 		manager?.nowPlayingList(
 			success: { [unowned self] (results) in
 				self.movieView.endRefreshing()
+				self.fullMovies = results.results
 				self.movieView.update(with: results.results)
 			}, failure: { [unowned self] (error) in
 				self.movieView.endRefreshing()
@@ -47,5 +55,16 @@ extension NowPlayingViewController: MovieListViewDelegate {
 	
 	func didSelect(movie: Movie) {
 		delegate?.openDetails(for: movie)
+	}
+}
+
+extension NowPlayingViewController: UISearchResultsUpdating {
+	func updateSearchResults(for searchController: UISearchController) {
+		if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+			let filteredMovies = fullMovies.filter({ $0.title.contains(searchText) })
+			movieView.update(with: filteredMovies)
+		} else {
+			movieView.update(with: fullMovies)
+		}
 	}
 }
