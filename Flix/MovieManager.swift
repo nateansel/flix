@@ -35,11 +35,11 @@ class MovieManager {
 	}
 	
 	private enum Security {
-		static let apiKeyName = "apiKey"
+		static let apiKeyName = "api_key"
 		static let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
 	}
 	
-	let shared = MovieManager()
+	static let shared = MovieManager()
 	
 	typealias NowPlayingListSucces = (NowPlayingListResults) -> Void
 	typealias NowPlayingListFailure = (Error) -> Void
@@ -65,7 +65,9 @@ class MovieManager {
 			}
 			
 			let decoder = JSONDecoder()
-			decoder.dateDecodingStrategy = .iso8601
+			let formatter = DateFormatter()
+			formatter.dateFormat = "YYYY-MM-dd"
+			decoder.dateDecodingStrategy = .formatted(formatter)
 			do {
 				let results = try decoder.decode(NowPlayingListResults.self, from: data)
 				success(results)
