@@ -12,4 +12,18 @@ struct Movie: Codable {
 	var id: Int
 	var title: String
 	var overview: String
+	
+	private lazy var searchText: String = { "\(title) \(overview)" }()
+}
+
+extension Movie: Searchable {
+	func performSearch(with query: Query) -> SearchResult {
+		var searchResult = SearchResult(numberOfKeywordMatches: 0)
+		for keyword in query.keywords {
+//			if searchText.contains(keyword) {
+//				searchResult.numberOfKeywordMatches += 1
+//			}
+		}
+		return searchResult
+	}
 }
