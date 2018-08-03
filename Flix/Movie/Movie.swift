@@ -6,15 +6,31 @@
 //  Copyright © 2018 Nathan Ansel. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct Movie: Codable {
+class Movie: Codable {
 	var id: Int
 	var title: String
 	var overview: String
+	var releaseDate: Date
 	var posterPath: String?
 	var backdropPath: String?
-	var releaseDate: Date
+	
+	var poster: UIImage?
+	var backdrop: UIImage?
+	
+	enum CodingKeys: String, CodingKey {
+		case id, title, overview, releaseDate, posterPath, backdropPath
+	}
+	
+    init(id: Int, title: String, overview: String, releaseDate: Date, posterPath: String?, backdropPath: String?) {
+        self.id = id
+        self.title = title
+        self.overview = overview
+        self.posterPath = posterPath
+        self.backdropPath = backdropPath
+        self.releaseDate = releaseDate
+    }
 }
 
 extension Movie: Searchable {

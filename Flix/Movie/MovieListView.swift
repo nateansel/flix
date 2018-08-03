@@ -141,8 +141,9 @@ extension MovieListView: UITableViewDataSource {
 		case MovieListView.movieSection:
 			let movie = movies[indexPath.row]
 			let cell = tableView.dequeueCell(Cell.movie, forIndexPath: indexPath)
-			cell.title = movie.title
-			cell.overview = movie.overview
+//			cell.title = movie.title
+//			cell.overview = movie.overview
+			cell.updateInterface(for: movie)
 			return cell
 		case MovieListView.loadingSection:
 			let cell = tableView.dequeueCell(Cell.loading, forIndexPath: indexPath)

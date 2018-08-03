@@ -56,7 +56,7 @@ class MovieManager {
 				failure(error!)
 				return
 			}
-			guard let data = data else {
+			guard let data = data, !data.isEmpty else {
 				// TODO: Inform the UI about incorrect data
 				return
 			}

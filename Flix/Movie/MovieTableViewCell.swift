@@ -20,6 +20,24 @@ class MovieTableViewCell: UITableViewCell {
 	private let overviewLabel = UILabel()
 	private let posterImageView = UIImageView()
 	
+	private let manager = PosterManager()
+	
+	func updateInterface(for movie: Movie?) {
+		titleLabel.text = movie?.title
+		overviewLabel.text = movie?.overview
+		posterImageView.image = movie?.poster
+		if movie?.poster == nil, let path = movie?.posterPath {
+			manager.smallPoster(
+				forPath: path,
+				success: { (image) in
+					movie?.poster = image
+					self.posterImageView.image = image
+				}, failure: { (error) in
+					print(error)
+			})
+		}
+	}
+	
 	var title: String? {
 		set { titleLabel.text = newValue }
 		get { return titleLabel.text }

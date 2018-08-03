@@ -70,5 +70,17 @@ class MovieDetailsView: UIView {
 	func updateInterface(with movie: Movie?) {
 		titleLabel.text = movie?.title
 		overviewLabel.text = movie?.overview
+		posterImageView.image = movie?.poster
+		if movie?.poster == nil, let path = movie?.posterPath {
+			let manager = PosterManager()
+			manager.smallPoster(
+				forPath: path,
+				success: { (image) in
+					movie?.poster = image
+					self.posterImageView.image = image
+				}, failure: { (error) in
+					print(error)
+			})
+		}
 	}
 }
