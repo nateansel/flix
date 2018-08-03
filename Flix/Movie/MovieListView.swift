@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - MovieListViewDelegate
+
 protocol MovieListViewDelegate: class {
 	func didBeginRefreshing()
 	func didEndRefreshing()
@@ -15,7 +17,12 @@ protocol MovieListViewDelegate: class {
 	func didSelect(movie: Movie)
 }
 
+// MARK: - MovieListView
+
 class MovieListView: UIView {
+	
+	// MARK: Properties
+	
 	private static let movieSection = 0
 	private static let loadingSection = 1
 	
@@ -40,6 +47,8 @@ class MovieListView: UIView {
 	}
 	
 	var delegate: MovieListViewDelegate?
+	
+	// MARK: Methods
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -109,6 +118,8 @@ class MovieListView: UIView {
 	}
 }
 
+// MARK: - UITableViewDataSource
+
 extension MovieListView: UITableViewDataSource {
 	func numberOfSections(in tableView: UITableView) -> Int {
 		if canLoadMore {
@@ -142,6 +153,8 @@ extension MovieListView: UITableViewDataSource {
 		}
 	}
 }
+
+// MARK: - UITableViewDelegate
 
 extension MovieListView: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

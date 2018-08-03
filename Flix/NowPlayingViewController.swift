@@ -21,6 +21,7 @@ class NowPlayingViewController: UIViewController {
 	var searchController = UISearchController(searchResultsController: nil)
 	
 	private var fullMovies: [Movie] = []
+	private var detailsMovie: Movie?
 	private var currentPage = 0
 	private var isLoading = false
 	
@@ -37,6 +38,13 @@ class NowPlayingViewController: UIViewController {
 		title = "Now Playing"
 		
 		navigationItem.searchController = searchController
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if let movie = detailsMovie {
+			movieView.deselect(movie: movie, animated: animated)
+		}
 	}
 }
 
@@ -83,6 +91,7 @@ extension NowPlayingViewController: MovieListViewDelegate {
 	}
 	
 	func didSelect(movie: Movie) {
+		detailsMovie = movie
 		delegate?.openDetails(for: movie)
 	}
 }

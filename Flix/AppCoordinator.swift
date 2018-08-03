@@ -25,6 +25,8 @@ class AppCoordinator {
 
 extension AppCoordinator: NowPlayingViewControllerDelegate {
 	func openDetails(for movie: Movie) {
-		
+		let vc = MovieDetailsViewController()
+		vc.movie = movie
+		navigationController.pushViewController(vc, animated: true)
 	}
 }

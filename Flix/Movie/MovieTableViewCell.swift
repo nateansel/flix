@@ -79,5 +79,7 @@ class MovieTableViewCell: UITableViewCell {
 		overviewLabel.numberOfLines = 0
 		overviewLabel.font = UIFont.preferredFont(forTextStyle: .body)
 		overviewLabel.adjustsFontForContentSizeCategory = true
+		
+		posterImageView.backgroundColor = UIColor(red:0.98, green:0.10, blue:0.31, alpha:1.00)
 	}
 }

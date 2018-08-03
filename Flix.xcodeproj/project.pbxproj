@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0E2B21D42113B3EC00CE9949 /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B21D32113B3EC00CE9949 /* Searchable.swift */; };
 		0E7E771C2114A7140078FA0E /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7E771B2114A7140078FA0E /* LoadingTableViewCell.swift */; };
+		0E7E771F2114BE1D0078FA0E /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7E771E2114BE1D0078FA0E /* MovieDetailsView.swift */; };
+		0E7E77232114D2EF0078FA0E /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7E77222114D2EF0078FA0E /* MovieDetailsViewController.swift */; };
 		D8026FCD21109856005C1938 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8026FCC21109856005C1938 /* NowPlayingViewController.swift */; };
 		D8026FCF211099B3005C1938 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8026FCE211099B3005C1938 /* MovieTableViewCell.swift */; };
 		D8026FD121109CE3005C1938 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8026FD021109CE3005C1938 /* UIView+Additions.swift */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		0E2B21D32113B3EC00CE9949 /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
 		0E7E771B2114A7140078FA0E /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		0E7E771E2114BE1D0078FA0E /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		0E7E77222114D2EF0078FA0E /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		D8026FCC21109856005C1938 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
 		D8026FCE211099B3005C1938 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		D8026FD021109CE3005C1938 /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
@@ -51,6 +55,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E7E771D2114BE090078FA0E /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				D87D1BC5210FFDD600CA6F2D /* Movie.swift */,
+				D8026FD221109D18005C1938 /* MovieListView.swift */,
+				D8026FCE211099B3005C1938 /* MovieTableViewCell.swift */,
+				0E7E771E2114BE1D0078FA0E /* MovieDetailsView.swift */,
+				0E7E77222114D2EF0078FA0E /* MovieDetailsViewController.swift */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
 		D83E08CA2110B5CD004F33A8 /* UIKit Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,10 +98,8 @@
 				D87D1BB0210FFAA000CA6F2D /* AppDelegate.swift */,
 				D8026FD42110AA04005C1938 /* AppCoordinator.swift */,
 				D8026FCC21109856005C1938 /* NowPlayingViewController.swift */,
-				D8026FD221109D18005C1938 /* MovieListView.swift */,
+				0E7E771D2114BE090078FA0E /* Movie */,
 				D87D1BC3210FFDCC00CA6F2D /* MovieManager.swift */,
-				D87D1BC5210FFDD600CA6F2D /* Movie.swift */,
-				D8026FCE211099B3005C1938 /* MovieTableViewCell.swift */,
 				0E7E771B2114A7140078FA0E /* LoadingTableViewCell.swift */,
 				0E2B21D32113B3EC00CE9949 /* Searchable.swift */,
 				D83E08CA2110B5CD004F33A8 /* UIKit Extensions */,
@@ -177,10 +191,12 @@
 			files = (
 				D8026FD121109CE3005C1938 /* UIView+Additions.swift in Sources */,
 				D8026FD321109D18005C1938 /* MovieListView.swift in Sources */,
+				0E7E77232114D2EF0078FA0E /* MovieDetailsViewController.swift in Sources */,
 				D8026FCF211099B3005C1938 /* MovieTableViewCell.swift in Sources */,
 				D8026FCD21109856005C1938 /* NowPlayingViewController.swift in Sources */,
 				D8026FD52110AA04005C1938 /* AppCoordinator.swift in Sources */,
 				D87D1BC4210FFDCC00CA6F2D /* MovieManager.swift in Sources */,
+				0E7E771F2114BE1D0078FA0E /* MovieDetailsView.swift in Sources */,
 				D87D1BC6210FFDD600CA6F2D /* Movie.swift in Sources */,
 				0E7E771C2114A7140078FA0E /* LoadingTableViewCell.swift in Sources */,
 				D87D1BB1210FFAA000CA6F2D /* AppDelegate.swift in Sources */,
