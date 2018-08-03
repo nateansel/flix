@@ -30,8 +30,7 @@ extension Collection where Element: Searchable {
 		return self
 			.map { (element: $0, searchResult: $0.performSearch(with: query)) }
 			.filter { $0.searchResult.numberOfKeywordMatches > 0 }
-			
-//			.sort { $0.numberOfKeywordMatches }
+			.sorted { $0.searchResult.numberOfKeywordMatches > $1.searchResult.numberOfKeywordMatches }
 			.map { $0.element }
 	}
 }

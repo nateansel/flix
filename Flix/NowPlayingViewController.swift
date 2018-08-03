@@ -61,7 +61,7 @@ extension NowPlayingViewController: MovieListViewDelegate {
 extension NowPlayingViewController: UISearchResultsUpdating {
 	func updateSearchResults(for searchController: UISearchController) {
 		if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-			let filteredMovies = fullMovies.filter({ $0.title.contains(searchText) })
+			let filteredMovies = fullMovies.search(for: searchText)
 			movieView.update(with: filteredMovies)
 		} else {
 			movieView.update(with: fullMovies)
