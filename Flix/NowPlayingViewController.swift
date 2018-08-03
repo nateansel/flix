@@ -21,10 +21,13 @@ class NowPlayingViewController: UIViewController {
 	var searchController = UISearchController(searchResultsController: nil)
 	
 	private var fullMovies: [Movie] = []
+	private var currentPage = 0
+	private var isLoading = false
 	
 	override func loadView() {
 		view = MovieListView()
 		movieView.delegate = self
+		movieView.allowsEndlessScroll = true
 		searchController.dimsBackgroundDuringPresentation = false
 		searchController.searchResultsUpdater = self
 	}
@@ -39,19 +42,45 @@ class NowPlayingViewController: UIViewController {
 
 extension NowPlayingViewController: MovieListViewDelegate {
 	func didBeginRefreshing() {
-		manager?.nowPlayingList(
-			success: { [unowned self] (results) in
-				self.movieView.endRefreshing()
-				self.fullMovies = results.results
-				self.movieView.update(with: results.results)
-			}, failure: { [unowned self] (error) in
-				self.movieView.endRefreshing()
-				print(error)
-				// TODO: Display error message
-		})
+		if !isLoading {
+			isLoading = true
+			manager?.nowPlayingList(
+				success: { [unowned self] (results) in
+					self.isLoading = false
+					self.currentPage = results.page
+					self.movieView.endRefreshing()
+					self.fullMovies = results.results
+					self.movieView.update(with: results.results)
+				}, failure: { [unowned self] (error) in
+					self.isLoading = false
+					self.movieView.endRefreshing()
+					print(error)
+					// TODO: Display error message
+			})
+		}
 	}
 	
 	func didEndRefreshing() {}
+	
+	func loadingCellDisplayed() {
+		if !isLoading {
+			isLoading = true
+			manager?.nowPlayingList(
+				page: currentPage.advanced(by: 1),
+				success: { [unowned self] (results) in
+					self.isLoading = false
+					self.currentPage = results.page
+					self.movieView.endRefreshing()
+					self.fullMovies = results.results
+					self.movieView.updateByAppending(with: results.results, isEndOfList: results.page == results.totalPages)
+				}, failure: { [unowned self] (error) in
+					self.isLoading = false
+					self.movieView.endRefreshing()
+					print(error)
+					// TODO: Display error message
+			})
+		}
+	}
 	
 	func didSelect(movie: Movie) {
 		delegate?.openDetails(for: movie)

@@ -11,12 +11,17 @@ import UIKit
 protocol MovieListViewDelegate: class {
 	func didBeginRefreshing()
 	func didEndRefreshing()
+	func loadingCellDisplayed()
 	func didSelect(movie: Movie)
 }
 
 class MovieListView: UIView {
+	private static let movieSection = 0
+	private static let loadingSection = 1
+	
 	private let tableView = UITableView()
 	private let refreshControl = UIRefreshControl()
+	private var canLoadMore = false
 	
 	var movies: [Movie] = []
 	var allowsPullToRefresh = true {
@@ -26,6 +31,11 @@ class MovieListView: UIView {
 			} else {
 				tableView.refreshControl = nil
 			}
+		}
+	}
+	var allowsEndlessScroll = false {
+		didSet {
+			canLoadMore = allowsEndlessScroll
 		}
 	}
 	
@@ -51,8 +61,11 @@ class MovieListView: UIView {
 		])
 		
 		tableView.registerReusableCell(Cell.movie)
+		tableView.registerReusableCell(Cell.loading)
 		tableView.refreshControl = refreshControl
 		tableView.dataSource = self
+		tableView.delegate = self
+		tableView.estimatedRowHeight = 136
 		
 		refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
 	}
@@ -73,7 +86,21 @@ class MovieListView: UIView {
 	
 	func update(with movies: [Movie]) {
 		self.movies = movies
+		canLoadMore = allowsEndlessScroll
 		tableView.reloadData()
+	}
+	
+	func updateByAppending(with movies: [Movie], isEndOfList: Bool) {
+		let currentCount = self.movies.count
+		let indexPaths = movies.enumerated().map { IndexPath(row: currentCount + $0.offset, section: 0) }
+		self.movies.append(contentsOf: movies)
+		canLoadMore = !isEndOfList
+		tableView.beginUpdates()
+		if isEndOfList {
+			tableView.deleteSections([MovieListView.loadingSection], with: .none)
+		}
+		tableView.insertRows(at: indexPaths, with: .top)
+		tableView.endUpdates()
 	}
 	
 	@objc
@@ -83,21 +110,47 @@ class MovieListView: UIView {
 }
 
 extension MovieListView: UITableViewDataSource {
+	func numberOfSections(in tableView: UITableView) -> Int {
+		if canLoadMore {
+			return 2
+		}
+		return 1
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return movies.count
+		switch section {
+		case MovieListView.movieSection: return movies.count
+		case MovieListView.loadingSection: return 1
+		default: fatalError("Too many sections in Movie List View")
+		}
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let movie = movies[indexPath.row]
-		let cell = tableView.dequeueCell(Cell.movie, forIndexPath: indexPath)
-		cell.title = movie.title
-		cell.overview = movie.overview
-		return cell
+		switch indexPath.section {
+		case MovieListView.movieSection:
+			let movie = movies[indexPath.row]
+			let cell = tableView.dequeueCell(Cell.movie, forIndexPath: indexPath)
+			cell.title = movie.title
+			cell.overview = movie.overview
+			return cell
+		case MovieListView.loadingSection:
+			let cell = tableView.dequeueCell(Cell.loading, forIndexPath: indexPath)
+			cell.isLoading = true
+			return cell
+		default:
+			fatalError("Invalid section. Unable to create UITableViewCell for: \(indexPath)")
+		}
 	}
 }
 
 extension MovieListView: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		delegate?.didSelect(movie: movies[indexPath.row])
+	}
+	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		if indexPath.section == MovieListView.loadingSection {
+			delegate?.loadingCellDisplayed()
+		}
 	}
 }

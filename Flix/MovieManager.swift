@@ -19,12 +19,6 @@ struct NowPlayingListResults: Codable {
 	var dates: Dates
 	var totalPages: Int
 	var totalResults: Int
-	
-	enum CodingKeys: String, CodingKey {
-		case page, results, dates
-		case totalPages = "total_pages"
-		case totalResults = "total_results"
-	}
 }
 
 class MovieManager {
@@ -43,11 +37,14 @@ class MovieManager {
 	
 	typealias NowPlayingListSucces = (NowPlayingListResults) -> Void
 	typealias NowPlayingListFailure = (Error) -> Void
-	func nowPlayingList(success: @escaping NowPlayingListSucces, failure: @escaping NowPlayingListFailure) {
+	func nowPlayingList(page: Int? = nil, success: @escaping NowPlayingListSucces, failure: @escaping NowPlayingListFailure) {
 		var components = URLComponents(string: Locations.nowPlaying)
 		components?.queryItems = [
 			URLQueryItem(name: Security.apiKeyName, value: Security.apiKey)
 		]
+		if let page = page {
+			components?.queryItems?.append(URLQueryItem(name: "page", value: "\(page)"))
+		}
 		guard let url = components?.url else {
 			fatalError("Invalid Now Playing list url: \(Locations.nowPlaying)")
 		}
@@ -68,10 +65,12 @@ class MovieManager {
 			let formatter = DateFormatter()
 			formatter.dateFormat = "YYYY-MM-dd"
 			decoder.dateDecodingStrategy = .formatted(formatter)
+			decoder.keyDecodingStrategy = .convertFromSnakeCase
 			do {
 				let results = try decoder.decode(NowPlayingListResults.self, from: data)
 				success(results)
 			} catch {
+				print(error)
 				failure(error)
 			}
 		}
