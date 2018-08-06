@@ -16,7 +16,7 @@ extension Cell {
 }
 
 class LoadingTableViewCell: UITableViewCell {
-	private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+	private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 	
 	var isLoading: Bool {
 		set {
@@ -47,6 +47,7 @@ class LoadingTableViewCell: UITableViewCell {
 			activityView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 			activityView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
 		])
+		activityView.color = .darkGray
 		activityView.hidesWhenStopped = false
 	}
 }
