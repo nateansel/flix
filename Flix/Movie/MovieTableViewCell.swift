@@ -20,35 +20,25 @@ class MovieTableViewCell: UITableViewCell {
 	private let overviewLabel = UILabel()
 	private let posterImageView = UIImageView()
 	
-	private let manager = PosterManager()
+	private let manager = ImageManager()
 	
 	func updateInterface(for movie: Movie?) {
 		titleLabel.text = movie?.title
 		overviewLabel.text = movie?.overview
 		posterImageView.image = movie?.poster
-		if movie?.poster == nil, let path = movie?.posterPath {
-			manager.smallPoster(
-				forPath: path,
-				success: { (image) in
-					movie?.poster = image
-					self.posterImageView.image = image
-				}, failure: { (error) in
-					print(error)
-			})
+		if movie?.poster == nil {
+			posterImageView.image = #imageLiteral(resourceName: "default_poster")
+			if let path = movie?.posterPath {
+				manager.smallPoster(
+					forPath: path,
+					success: { (image) in
+						movie?.poster = image
+						self.posterImageView.image = image
+					}, failure: { (error) in
+						print(error)
+				})
+			}
 		}
-	}
-	
-	var title: String? {
-		set { titleLabel.text = newValue }
-		get { return titleLabel.text }
-	}
-	var overview: String? {
-		set { overviewLabel.text = newValue }
-		get { return overviewLabel.text }
-	}
-	var poster: UIImage? {
-		set { posterImageView.image = newValue }
-		get { return posterImageView.image }
 	}
 	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -93,11 +83,14 @@ class MovieTableViewCell: UITableViewCell {
 		titleLabel.numberOfLines = 0
 		titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
 		titleLabel.adjustsFontForContentSizeCategory = true
+//		titleLabel.textColor = .white
 		
 		overviewLabel.numberOfLines = 0
 		overviewLabel.font = UIFont.preferredFont(forTextStyle: .body)
 		overviewLabel.adjustsFontForContentSizeCategory = true
+//		overviewLabel.textColor = .white
 		
 		posterImageView.backgroundColor = UIColor(red:0.98, green:0.10, blue:0.31, alpha:1.00)
+//		backgroundColor = .black
 	}
 }

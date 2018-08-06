@@ -35,7 +35,8 @@ class MovieDetailsViewController: UIViewController {
 			movieView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 			movieView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
 		])
-		view.backgroundColor = .black
+//		view.backgroundColor = .black
+		view.backgroundColor = .white
 		self.view = view
 	}
 	

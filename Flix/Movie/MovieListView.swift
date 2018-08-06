@@ -77,6 +77,8 @@ class MovieListView: UIView {
 		tableView.estimatedRowHeight = 136
 		
 		refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
+//		backgroundColor = .black
+//		tableView.backgroundColor = .black
 	}
 	
 	func beginRefreshing() {

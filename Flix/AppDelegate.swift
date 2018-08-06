@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
+//		appCoordinator.navigationController.navigationBar.barStyle = .blackTranslucent
 		appCoordinator.navigationController.navigationBar.prefersLargeTitles = true
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
