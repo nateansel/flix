@@ -47,7 +47,7 @@ class LoadingTableViewCell: UITableViewCell {
 			activityView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 			activityView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
 		])
-		activityView.color = .darkGray
+		activityView.color = .black
 		activityView.hidesWhenStopped = false
 	}
 }

@@ -155,6 +155,14 @@ extension MovieListView: UITableViewDataSource {
 			fatalError("Invalid section. Unable to create UITableViewCell for: \(indexPath)")
 		}
 	}
+	
+	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+		return UIView()
+	}
+	
+	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		return 0
+	}
 }
 
 // MARK: - UITableViewDelegate
