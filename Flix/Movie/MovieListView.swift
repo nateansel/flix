@@ -45,6 +45,21 @@ class MovieListView: UIView {
 			canLoadMore = allowsEndlessScroll
 		}
 	}
+	var isSearching: Bool = false {
+		didSet {
+			if isSearching {
+				canLoadMore = false
+				if tableView.numberOfSections > 1 {
+					tableView.deleteSections([1], with: .none)
+				}
+			} else {
+				canLoadMore = allowsEndlessScroll
+				if canLoadMore {
+					tableView.insertSections([1], with: .none)
+				}
+			}
+		}
+	}
 	
 	var delegate: MovieListViewDelegate?
 	
@@ -97,7 +112,9 @@ class MovieListView: UIView {
 	
 	func update(with movies: [Movie]) {
 		self.movies = movies
-		canLoadMore = allowsEndlessScroll
+		if !isSearching {
+			canLoadMore = allowsEndlessScroll
+		}
 		tableView.reloadData()
 	}
 	

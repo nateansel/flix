@@ -31,6 +31,7 @@ class NowPlayingViewController: UIViewController {
 		movieView.allowsEndlessScroll = true
 		searchController.dimsBackgroundDuringPresentation = false
 		searchController.searchResultsUpdater = self
+		searchController.delegate = self
 	}
 	
 	override func viewDidLoad() {
@@ -102,7 +103,7 @@ extension NowPlayingViewController: MovieListViewDelegate {
 					self.isLoading = false
 					self.currentPage = results.page
 					self.movieView.endRefreshing()
-					self.fullMovies = results.results
+					self.fullMovies.append(contentsOf: results.results)
 					self.movieView.updateByAppending(with: results.results, isEndOfList: results.page == results.totalPages)
 				}, failure: { [unowned self] (error) in
 					self.isLoading = false
@@ -127,5 +128,15 @@ extension NowPlayingViewController: UISearchResultsUpdating {
 		} else {
 			movieView.update(with: fullMovies)
 		}
+	}
+}
+
+extension NowPlayingViewController: UISearchControllerDelegate {
+	func didPresentSearchController(_ searchController: UISearchController) {
+		movieView.isSearching = true
+	}
+	
+	func didDismissSearchController(_ searchController: UISearchController) {
+		movieView.isSearching = false
 	}
 }
