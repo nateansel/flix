@@ -46,7 +46,30 @@ class NowPlayingViewController: UIViewController {
 			movieView.deselect(movie: movie, animated: animated)
 		}
 	}
+	
+	private func displayAlert(for error: Error) {
+		let retryAction = UIAlertAction(
+			title: "Retry",
+			style: .default,
+			handler: { _ in
+				self.movieView.beginRefreshing()
+				self.didBeginRefreshing()
+		})
+		let cancelAction = UIAlertAction(
+			title: "Cancel",
+			style: .cancel,
+			handler: nil)
+		let alert = UIAlertController(
+			title: "Network Error",
+			message: "Flix had trouble downloading the list of movies, please try again.",
+			preferredStyle: .alert)
+		alert.addAction(cancelAction)
+		alert.addAction(retryAction)
+		present(alert, animated: true, completion: nil)
+	}
 }
+
+// MARK: - MovieListViewDelegate
 
 extension NowPlayingViewController: MovieListViewDelegate {
 	func didBeginRefreshing() {
@@ -62,8 +85,8 @@ extension NowPlayingViewController: MovieListViewDelegate {
 				}, failure: { [unowned self] (error) in
 					self.isLoading = false
 					self.movieView.endRefreshing()
+					self.displayAlert(for: error)
 					print(error)
-					// TODO: Display error message
 			})
 		}
 	}
@@ -84,8 +107,8 @@ extension NowPlayingViewController: MovieListViewDelegate {
 				}, failure: { [unowned self] (error) in
 					self.isLoading = false
 					self.movieView.endRefreshing()
+					self.displayAlert(for: error)
 					print(error)
-					// TODO: Display error message
 			})
 		}
 	}

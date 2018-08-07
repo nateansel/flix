@@ -38,6 +38,12 @@ class MovieManager {
 	typealias NowPlayingListSucces = (NowPlayingListResults) -> Void
 	typealias NowPlayingListFailure = (Error) -> Void
 	func nowPlayingList(page: Int? = nil, success: @escaping NowPlayingListSucces, failure: @escaping NowPlayingListFailure) {
+		// Uncomment the following code to simulate a network failure
+//		DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//			failure(NSError(domain: "", code: -1, userInfo: nil))
+//		})
+//		return
+		
 		var components = URLComponents(string: Locations.nowPlaying)
 		components?.queryItems = [
 			URLQueryItem(name: Security.apiKeyName, value: Security.apiKey)
