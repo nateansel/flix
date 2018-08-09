@@ -22,6 +22,8 @@ class ImageManager {
 	
 	private var isLoadingPaths: [String] = []
 	
+	static var shared = ImageManager()
+	
 	typealias ImageSuccess = (UIImage) -> Void
 	typealias ImageFailure = (Error) -> Void
 	func smallPoster(forPath path: String, success: @escaping ImageSuccess, failure: @escaping ImageFailure) {

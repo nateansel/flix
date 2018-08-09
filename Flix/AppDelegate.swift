@@ -12,15 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-	let appCoordinator = AppCoordinator(navigationController: UINavigationController())
+	let appCoordinator = AppCoordinator(tabBarController: UITabBarController())
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
 //		appCoordinator.navigationController.navigationBar.barStyle = .blackTranslucent
-		appCoordinator.navigationController.navigationBar.prefersLargeTitles = true
+//		appCoordinator.navigationController.navigationBar.prefersLargeTitles = true
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = appCoordinator.navigationController
+		window?.rootViewController = appCoordinator.tabBarController
 		window?.makeKeyAndVisible()
 		
 		appCoordinator.start()

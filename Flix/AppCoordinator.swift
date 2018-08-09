@@ -2,31 +2,34 @@
 //  AppCoordinator.swift
 //  Flix
 //
-//  Created by Nathan Ansel on 7/31/18.
+//  Created by Nathan Ansel on 8/9/18.
 //  Copyright © 2018 Nathan Ansel. All rights reserved.
 //
 
 import UIKit
 
 class AppCoordinator {
-	let navigationController: UINavigationController
+	var tabBarController: UITabBarController
 	
-	init(navigationController: UINavigationController) {
-		self.navigationController = navigationController
+	let nowPlayingCoordinator: NowPlayingCoordinator
+	let topRatedCoordinator: TopRatedCoordinator
+	
+	init(tabBarController: UITabBarController) {
+		self.tabBarController = tabBarController
+		nowPlayingCoordinator = NowPlayingCoordinator(navigationController: UINavigationController())
+		nowPlayingCoordinator.navigationController.navigationBar.prefersLargeTitles = true
+		
+		topRatedCoordinator = TopRatedCoordinator(navigationController: UINavigationController())
+		topRatedCoordinator.navigationController.navigationBar.prefersLargeTitles = true
+		
+		tabBarController.setViewControllers([
+				nowPlayingCoordinator.navigationController,
+				topRatedCoordinator.navigationController
+			], animated: false)
 	}
 	
 	func start() {
-		let vc = NowPlayingViewController()
-		vc.delegate = self
-		vc.manager = MovieManager.shared
-		navigationController.pushViewController(vc, animated: false)
-	}
-}
-
-extension AppCoordinator: NowPlayingViewControllerDelegate {
-	func openDetails(for movie: Movie) {
-		let vc = MovieDetailsViewController()
-		vc.movie = movie
-		navigationController.pushViewController(vc, animated: true)
+		nowPlayingCoordinator.start()
+		topRatedCoordinator.start()
 	}
 }

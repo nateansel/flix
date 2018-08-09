@@ -20,7 +20,7 @@ class MovieTableViewCell: UITableViewCell {
 	private let overviewLabel = UILabel()
 	private let posterImageView = UIImageView()
 	
-	private let manager = ImageManager()
+	private let manager = ImageManager.shared
 	
 	func updateInterface(for movie: Movie?) {
 		titleLabel.text = movie?.title
