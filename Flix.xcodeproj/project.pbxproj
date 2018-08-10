@@ -116,16 +116,10 @@
 			children = (
 				D87D1BB0210FFAA000CA6F2D /* AppDelegate.swift */,
 				0E0EDD6F211C861E00A12A6D /* AppCoordinator.swift */,
-				D8026FD42110AA04005C1938 /* NowPlayingCoordinator.swift */,
-				D8026FCC21109856005C1938 /* NowPlayingViewController.swift */,
-				0EFCD9B6211C89C60050CBB5 /* TopRatedCoordinator.swift */,
-				0EFCD9BC211CA0A50050CBB5 /* TopRatedViewController.swift */,
+				D890925A211D2834003DD1C4 /* Now Playing */,
+				D890925B211D283C003DD1C4 /* Top Rated */,
 				0E7E771D2114BE090078FA0E /* Movie */,
-				0E7E77262114F7A00078FA0E /* ConfigurationManager.swift */,
-				D87D1BC3210FFDCC00CA6F2D /* MovieManager.swift */,
-				0E7E77242114F69D0078FA0E /* ImageManager.swift */,
-				0E7E771B2114A7140078FA0E /* LoadingTableViewCell.swift */,
-				0E2B21D32113B3EC00CE9949 /* Searchable.swift */,
+				D8909259211D2813003DD1C4 /* Managers */,
 				D83E08CA2110B5CD004F33A8 /* UIKit Extensions */,
 				D87D1BC2210FFDB600CA6F2D /* Extras */,
 			);
@@ -140,6 +134,36 @@
 				D87D1BBC210FFAA000CA6F2D /* Info.plist */,
 			);
 			path = Extras;
+			sourceTree = "<group>";
+		};
+		D8909259211D2813003DD1C4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0E7E77262114F7A00078FA0E /* ConfigurationManager.swift */,
+				D87D1BC3210FFDCC00CA6F2D /* MovieManager.swift */,
+				0E7E77242114F69D0078FA0E /* ImageManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D890925A211D2834003DD1C4 /* Now Playing */ = {
+			isa = PBXGroup;
+			children = (
+				D8026FD42110AA04005C1938 /* NowPlayingCoordinator.swift */,
+				D8026FCC21109856005C1938 /* NowPlayingViewController.swift */,
+				0E7E771B2114A7140078FA0E /* LoadingTableViewCell.swift */,
+				0E2B21D32113B3EC00CE9949 /* Searchable.swift */,
+			);
+			path = "Now Playing";
+			sourceTree = "<group>";
+		};
+		D890925B211D283C003DD1C4 /* Top Rated */ = {
+			isa = PBXGroup;
+			children = (
+				0EFCD9B6211C89C60050CBB5 /* TopRatedCoordinator.swift */,
+				0EFCD9BC211CA0A50050CBB5 /* TopRatedViewController.swift */,
+			);
+			path = "Top Rated";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

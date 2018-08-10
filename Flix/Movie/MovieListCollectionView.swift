@@ -60,17 +60,15 @@ class MovieListCollectionView: UIView {
 			collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
 			collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
-			])
+		])
 		
 		collectionView.registerReusableCell(Cell.movieCollection)
-//		collectionView.registerReusableCell(Cell.loading)
 		collectionView.refreshControl = refreshControl
 		collectionView.dataSource = self
 		collectionView.delegate = self
 		
 		refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
-		//		backgroundColor = .black
-		//		tableView.backgroundColor = .black
+		collectionView.backgroundColor = .white
 	}
 	
 	func beginRefreshing() {

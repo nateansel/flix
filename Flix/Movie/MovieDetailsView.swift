@@ -70,7 +70,7 @@ class MovieDetailsView: UIView {
 			releaseDateLabel.leadingAnchor.constraint(equalTo: cardView.layoutMarginsGuide.leadingAnchor),
 			releaseDateLabel.trailingAnchor.constraint(equalTo: cardView.layoutMarginsGuide.trailingAnchor),
 			
-			overviewLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor),
+			overviewLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 12),
 			overviewLabel.leadingAnchor.constraint(equalTo: cardView.layoutMarginsGuide.leadingAnchor),
 			overviewLabel.trailingAnchor.constraint(equalTo: cardView.layoutMarginsGuide.trailingAnchor),
 			overviewLabel.bottomAnchor.constraint(equalTo: cardView.layoutMarginsGuide.bottomAnchor)
@@ -82,6 +82,9 @@ class MovieDetailsView: UIView {
 		titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
 //		titleLabel.textColor = .white
 		titleLabel.numberOfLines = 0
+		
+		releaseDateLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+		releaseDateLabel.numberOfLines = 0
 		
 		overviewLabel.font = UIFont.preferredFont(forTextStyle: .body)
 //		overviewLabel.textColor = .white
@@ -95,6 +98,13 @@ class MovieDetailsView: UIView {
 		titleLabel.text = movie?.title
 		overviewLabel.text = movie?.overview
 		posterImageView.image = movie?.poster
+		if let date = movie?.releaseDate {
+			let formatter = DateFormatter()
+			formatter.dateStyle = .long
+			releaseDateLabel.text = formatter.string(from: date)
+		} else {
+			releaseDateLabel.text = nil
+		}
 		if movie?.poster == nil {
 			posterImageView.image = #imageLiteral(resourceName: "default_poster")
 			if let path = movie?.posterPath {

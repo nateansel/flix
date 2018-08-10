@@ -35,7 +35,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/nateansel/flix/blob/master/flix_walkthrough.gif' title='Video Walkthrough' width='300px' alt='Video Walkthrough'/>
+<img src='https://github.com/nateansel/flix/blob/master/week_1.gif' title='Video Walkthrough' width='300px' alt='Video Walkthrough'/>
 
 GIF created with [Gifox](https://gifox.io).
 
@@ -72,16 +72,14 @@ Time spent: **2** hours spent in total
 The following **required** functionality is completed:
 
 - [x] User can tap a cell to see a detail view (+5pts)
-- [ ] User can tap a tab bar button to view a grid layout of Movie Posters using a CollectionView (+5pts)
+- [x] User can tap a tab bar button to view a grid layout of Movie Posters using a CollectionView (+5pts)
 
 The following **stretch** features are implemented:
 
-- [ ] User can tap a poster in the collection view to see a detail screen of that movie (+3pts)
+- [x] User can tap a poster in the collection view to see a detail screen of that movie (+3pts)
 - [ ] In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer (+3pts)
 - [ ] Customize the navigation bar (+1pt)
 - [ ] List in any optionals you didn't finish from last week (+1-3pts)
-   - ...
-   - ...
 
 The following **additional** features are implemented:
 
@@ -89,20 +87,22 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. I’d like to discuss my use of a blur view in the Movie Details screen, as it is something that not very intuitive to use.
+2. I’d like to discuss how I could improve the layout of my views. I think I could improve the general look and feel of this app quite a bit.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='300px' alt='Video Walkthrough'/>
+<img src='https://github.com/nateansel/flix/blob/master/week_2.gif' title='Video Walkthrough' width='300px' alt='Video Walkthrough'/>
 
 GIF created with [Gifox](https://gifox.io).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+I ran into a few layout issues when using the UICollectionView. I don’t use Collection Views in many of my projects, so I usually have to refresh myself on how they layout their cells.
 
 ## License
 
